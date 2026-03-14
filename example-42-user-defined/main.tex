@@ -1,0 +1,130 @@
+% Recipe: xelatex -> bibtex -> xelatex*2
+
+\documentclass{mySimpleArticleCN}
+
+\title{\textbf{\LaTeX{}排版示例}\thanks{本文档受到乌有先生之乌有基金的资助}}
+\author{You Know Who, \quad You Cannot-Know Who\thanks{小组长/指导教师/通讯作者：wuyou@nosuchanemail.no}}
+\date{\today}
+
+\begin{document}
+    \maketitle          % 生成封面
+    \tableofcontents    % 目录
+    \newpage
+    
+    \section{图表示例}
+
+    \subsection{插入图片}
+
+    如图~\ref{fig:starryNight}~所示。图片存放在 \verb|figures| 目录。
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.6\linewidth]{starryNight.jpg}
+        \caption{A figure of starry night by Vincent}
+        \label{fig:starryNight}
+    \end{figure}
+
+    \subsection{插入表格}
+
+    如表~\ref{tab:Univ-rank-2024}~所示。
+
+    \begin{table}[htbp]
+        \centering
+        \caption{Chinese Universities Ranked in the Top 50 in QS 2024}
+        \label{tab:Univ-rank-2024}
+        \begin{tabular}{@{}ccc@{}}
+        \toprule
+        Rank & University Name                               & Location         \\ \midrule
+        17   & Peking University                             & China (Mainland) \\
+        25   & \textbf{Tsinghua University}                  & China (Mainland) \\
+        44   & Zhejiang University                           & China (Mainland) \\
+        50   & Fudan University                              & China (Mainland) \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+
+
+    \section{数学公式示例}
+
+    在量子力学中，微观粒子在势场 \(V(\mathbf{r})\) 中的运动可以描述为
+    \[
+        \mathrm{i} \hbar \frac{\partial \Psi}{\partial t} = 
+        - \frac{\hbar^2}{2m} \nabla^2 \Psi + V(\mathbf{r}) \Psi
+    \]
+
+    Maxwell电磁方程组如\eqref{eq:maxwell-equations}所示。
+    \begin{equation}
+        \label{eq:maxwell-equations}
+        \left\{
+        \begin{aligned}
+            \nabla \cdot \mathbf{D} &= \rho_0 \\
+            \nabla \cdot \mathbf{B} &= 0 \\
+            \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+            \nabla \times \mathbf{H} &= \mathbf{j}_0 + \frac{\partial \mathbf{D}}{\partial t}
+        \end{aligned}
+        \right.
+    \end{equation}
+
+    Maxwell电磁方程组如\eqref{eq:Maxwell-Eqns-1}--\eqref{eq:Maxwell-Eqns-4}所示。
+    \begin{align}
+        \label{eq:Maxwell-Eqns-1}
+        \nabla \cdot \mathbf{D} &= \rho_0 \\
+        \label{eq:Maxwell-Eqns-2}
+        \nabla \cdot \mathbf{B} &= 0 \\
+        \label{eq:Maxwell-Eqns-3}
+        \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+        \label{eq:Maxwell-Eqns-4}
+        \nabla \times \mathbf{H} &= \mathbf{j}_0 + \frac{\partial \mathbf{D}}{\partial t}
+    \end{align}
+
+    可以用 \verb|subequations| 环境使不同方程拥有公共编号和各自的子编号。例如：
+    \begin{subequations}
+        \begin{align}
+            \label{eq:Maxwell-Eqns-01}
+            \nabla \cdot \mathbf{D} &= \rho_0 \\
+            \label{eq:Maxwell-Eqns-02}
+            \nabla \cdot \mathbf{B} &= 0 \\
+            \label{eq:Maxwell-Eqns-03}
+            \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+            \label{eq:Maxwell-Eqns-04}
+            \nabla \times \mathbf{H} &= \mathbf{j}_0 + \frac{\partial \mathbf{D}}{\partial t}
+        \end{align}
+    \end{subequations}
+
+    可使用 \verb|cases| 环境产生分段函数，例如：
+    \begin{equation}
+        f(x,y)=
+        \begin{cases}
+        \dfrac{xy}{x^2+y^2}, & x^2+y^2 \neq 0 \\
+        0, & x=y=0
+        \end{cases}
+    \end{equation}
+
+
+    \section{参考文献引用示例}
+        \subsection{引言}
+
+        \lipsum[1]\cite{jack1971,lieberman1989}
+
+        \lipsum[3]\cite{sander1969}
+
+        \subsection{方法}
+
+        \lipsum[4]\cite{Powis2024,Sun2023a}
+
+        \subsection{结果与讨论}
+
+        \lipsum[5-6]\citep{Lopez2013, Falgout2002a}
+
+        \lipsum[7]\citep{Donko2021}
+
+        \subsection{结论}
+
+        \lipsum[8]
+
+\newpage
+
+% 列出参考文献
+\bibliography{reference/refs}   % BibTeX 数据库文件(.bib)
+
+\end{document}

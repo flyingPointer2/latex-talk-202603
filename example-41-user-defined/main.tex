@@ -1,0 +1,64 @@
+\documentclass{article}
+
+\usepackage{ctex}
+
+\usepackage{geometry}   % 设置页面大小和页边距
+\geometry{a4paper, hmargin=1.25in, vmargin=1in}
+
+\usepackage{setspace}   % 设置行距
+\doublespacing         % 2 倍行距
+
+\usepackage{xcolor}
+\definecolor{THUPurple}{HTML}{660874}   % 定义颜色THUPurple（清华紫）
+
+\usepackage{fontawesome5}   % 使用链接符号(\faLink)
+\usepackage[colorlinks]{hyperref}
+
+% 自定义命令
+% 定义新的命令
+\newcommand{\dif}{\mathrm{d}}   % 微分符号（数学）
+\newcommand{\link}[1]{\href{#1}{\textcolor{THUPurple}{\faLink}}}  % 定义链接符号
+
+% 重新定义已有的命令
+\renewcommand\thefootnote{[\arabic{footnote}]}  % 设置脚注格式
+
+% 自定义环境
+\newenvironment{myQuotation}{%
+    \vspace{1ex}\itshape\color{THUPurple}% % 段前1ex垂直间距 斜体 清华紫色
+}{\vspace{1ex}}   % 段后1ex垂直间距
+
+\begin{document}
+    
+\section{自定义命令示例}
+    
+    一个定积分:
+    \[
+        \int_{0}^{x} \frac{1}{t^2+1} \dif t = \arctan x
+    \]
+其中， \verb|\dif| 命令定义于 \verb|\newcommand{\dif}{\mathrm{d}}| 。
+
+    欢迎来到Bilibili! \link{https://www.bilibili.com}
+
+    此外，通过 \verb|\renewcommand\thefootnote{[\arabic{footnote}]}| 修改了脚注样式\footnote{修改为脚注编号为阿拉伯数字、且被 [ 和 ] 包围的样式}。
+
+    在 \LaTeX 中，图、表、数学公式、页码、脚注等元素的编号格式都可通过 \verb|\renewcommand| 命令进行定制，详见 \verb|lshort-zh-cn| 文档\footnote{本地环境中通过 \texttt{texdoc lshort-zh-cn} 打开，或前往CTAN网站下载 \link{https://ctan.org/pkg/lshort-zh-cn}}第8.3节。
+
+\section{自定义环境示例}
+
+    这是一首词：
+
+    \begin{myQuotation}
+        楚天千里清秋，水随天去秋无际。
+        遥岑远目，献愁供恨，玉簪螺髻。
+        落日楼头，断鸿声里，江南游子。
+        把吴钩看了，栏杆拍遍，无人会，登临意。
+        
+        休说鲈鱼堪脍，尽西风，季鹰归未？
+        求田问舍，怕应羞见，刘郎才气。
+        可惜流年，忧愁风雨，树犹如此！
+        倩何人，唤取红巾翠袖，揾英雄泪！
+    \end{myQuotation}
+
+    这首词的作者是辛弃疾，题目是《水龙吟·登建康赏心亭》。
+
+\end{document}

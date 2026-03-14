@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+
+\usepackage{lipsum}
+\usepackage{booktabs}   % 三线表
+
+\usepackage{geometry}   % 设置页边距
+\geometry{a4paper, hmargin=2.54cm, vmargin=3.18cm}
+
+\usepackage{setspace}   % 设置行距
+\onehalfspacing         % 1.5 倍行距
+
+% 设置表格格式
+\usepackage{array}
+\renewcommand{\arraystretch}{1.2} % 基础行距
+\setlength{\defaultaddspace}{3pt} % booktabs默认间距
+
+% 去掉图/表编号与题注文字之间的冒号
+\usepackage{caption}
+\DeclareCaptionLabelSeparator{twospace}{~~}
+\captionsetup{labelsep=twospace}
+
+\begin{document}
+
+\lipsum[1]
+
+As shown in Table \ref{tab:Univ-rank-2024} in page \pageref{tab:Univ-rank-2024}.
+
+    \begin{table}[htbp]
+        \centering
+        \caption{Chinese Universities Ranked in the Top 50 in QS 2024}
+        \label{tab:Univ-rank-2024}
+        \begin{tabular}{@{}ccc@{}}
+        \toprule
+        Rank & University Name                               & Location         \\ \midrule
+        17   & Peking University                             & China (Mainland) \\
+        25   & \textbf{Tsinghua University}                  & China (Mainland) \\
+        44   & Zhejiang University                           & China (Mainland) \\
+        50   & Fudan University                              & China (Mainland) \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+
+\lipsum[2]
+
+\end{document}

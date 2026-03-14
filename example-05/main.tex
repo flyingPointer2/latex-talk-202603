@@ -1,0 +1,265 @@
+\documentclass[12pt]{ctexart}   % 正文字体大小为12pt（可选项：10pt, 11pt, 12pt）
+
+\usepackage{lipsum}         % 生成随机文字
+
+% 字体定制
+
+% 可以直接调用系统字体
+% 在终端中输入命令 fc-list ，可以查看系统字体的路径、名称等信息
+\usepackage{fontspec}           
+\setmainfont{Times New Roman}           % 设置英文与数字的主字体
+% \setsansfont{Arial}                   % 设置无衬线字体（英文与数字的粗体字体）
+% \setmonofont{Courier New}             % 设置等宽字体（英文与数字的等宽（代码）字体）
+
+% % 设置中文主字体及其粗体字体、斜体字体
+% % 若调用系统中文字体，可以在终端中输入以下命令进行查找： fc-list :lang=zh-cn
+\setCJKmainfont[
+    BoldFont=方正小标宋简体, 
+    ItalicFont=楷体
+]{霞鹜文楷等宽 GB 屏幕阅读版}
+
+
+\usepackage{minted}         % 代码高亮
+
+
+% 页面大小与页边距设置
+\usepackage{geometry}   
+\geometry{a4paper, 
+    left=2.54cm, right=2.54cm, top=3.18cm, bottom=3.18cm,
+    headsep=1cm,    % 页眉和正文之间的距离
+    footskip=1cm    % 页脚和正文之间的距离
+}
+
+% 页眉页脚设置
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}                      % 清空所有页眉和页脚区域的当前设置，避免继承默认的或其他样式残留的设置
+\setlength{\headheight}{15pt}   % 设置页眉区域的高度为 15 pt
+\addtolength{\topmargin}{-2pt}  % 调整页面上边距（\topmargin）的大小，将其减少 2 pt
+\fancyfoot[C]{\thepage}         % 页脚居中显示页码
+\fancyhead[L]{\LaTeX{}文字格式调整}      
+\fancyhead[R]{You Know Who}            
+
+
+% 行距
+\usepackage{setspace}
+\onehalfspacing
+
+% 设置一级标题、二级标题、三级标题的格式
+\ctexset{%
+  section = {
+    format     = \centering\bfseries\fontsize{16bp}{20bp}\selectfont,    % 格式：居中对齐、加粗、字体大小16bp、行距20bp
+    aftername  = \quad, % 编号与内容的间隔
+    beforeskip = 25bp,  % 段前间距
+    afterskip  = 12bp,  % 段后间距
+    name   = {,.},      % 编号格式
+  },
+  subsection = {
+    format     = \bfseries\fontsize{14bp}{18bp}\selectfont,
+    aftername  = \quad,
+    beforeskip = 12bp,
+    afterskip  = 6bp,
+  },
+  subsubsection = {
+    format     = \bfseries\fontsize{13bp}{15bp}\selectfont,
+    aftername  = \quad,
+    beforeskip = 12bp,
+    afterskip  = 6bp,
+  },
+}%
+
+
+\usepackage[hidelinks]{hyperref}
+
+
+\title{\bfseries \LaTeX{}文字格式调整演示\thanks{本文档受到乌有先生之乌有基金的资助}}   % 标题
+\author{You Know Who, \and You Cannot-Know Who\thanks{小组长/指导教师/通讯作者：wuyou@nosuchanemail.no}}        % 作者
+\date{\today}                   % 日期
+
+
+\begin{document}
+
+
+\maketitle
+\tableofcontents
+
+\thispagestyle{empty}   % 封面及目录页的页眉、页脚为空
+
+\newpage
+
+
+
+\section{正文脚注演示}
+
+\lipsum[1]\footnote{这是一个脚注}
+
+\section{文本加粗演示}
+
+\textbf{\lipsum[2]}
+
+{\bfseries \lipsum[2]}
+
+汉字{\bfseries 加粗}演示。
+
+\section{文本斜体演示}
+
+\textit{\lipsum[2]}
+
+{\itshape \lipsum[2]}
+
+汉字{\itshape 斜体}演示。
+
+\section{字体调整与定制}
+
+在宏包 \verb|fontspec|、\verb|ctex| 以及 \verb|xelatex| 编译命令下，我们可以定制汉字以及数字和英文字符的正常字体、粗体、斜体、等宽字体对应的字体。
+示例代码如下：
+\begin{verbatim}
+\usepackage{fontspec}   % 字体定制支持
+
+% 中文字体设置，给定字体文件
+\setCJKmainfont[
+    Path = my_fonts/,                           % 字体文件所在目录
+    BoldFont = SourceHanSerifSC-Heavy.otf,      % 粗体对应的字体文件名
+    ItalicFont = ChillKai.ttf                   % 斜体对应的字体文件名
+]{SourceHanSerifSC-Regular.otf}                 % 正文字体文件名
+
+% 中文字体设置，使用系统字体
+\setCJKmainfont[
+    BoldFont = 方正小标宋简体, 
+    ItalicFont = 楷体
+]{霞鹜文楷等宽 GB 屏幕阅读版}
+\end{verbatim}
+
+% 字体下载链接：https://cloud.tsinghua.edu.cn/f/64111188e3eb4084b4f8/?dl=1
+
+\section{代码块演示}
+
+在宏包 \verb|minted| 的帮助下，我们可以在\LaTeX{}中插入语法高亮的代码块。此时，上述的示例代码块可呈现如下：
+\begin{minted}
+[
+    frame=lines,
+    framesep=2mm,
+    baselinestretch=1.2,
+    linenos
+]
+{latex}
+\usepackage{fontspec}   % 字体定制支持
+
+% 中文字体设置，给定字体文件
+\setCJKmainfont[
+    Path = my_fonts/,                           % 字体文件所在目录
+    BoldFont = SourceHanSerifSC-Heavy.otf,      % 粗体对应的字体文件名
+    ItalicFont = ChillKai.ttf                   % 斜体对应的字体文件名
+]{SourceHanSerifSC-Regular.otf}                 % 正文字体文件名
+
+% 中文字体设置，使用系统字体
+\setCJKmainfont[
+    BoldFont = 方正小标宋简体, 
+    ItalicFont = 楷体
+]{霞鹜文楷等宽 GB 屏幕阅读版}
+\end{minted}
+
+在本地配置时，需有Python环境（版本不低于3.8）并安装 Pygments 库：
+\begin{minted}
+[
+    frame=lines,
+    framesep=2mm,
+    baselinestretch=1.2,
+    linenos
+]{shell}    
+pip install Pygments
+\end{minted}
+并且在编译命令中，需增加 \verb|-shell-escape| 参数。（注意到这一行没有缩进）一个示例VSCode配置如下：
+\begin{minted}
+[
+    frame=lines,
+    framesep=2mm,
+    baselinestretch=1.2,
+    linenos
+]{json}    
+{
+    "name": "xelatex",
+    "command": "xelatex",
+    "args": [
+        "-synctex=1",
+        "-shell-escape",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOCFILE%"
+    ]
+},
+\end{minted}
+
+However, Overleaf can save you the trouble of installing it and having to run special commands to compile your document---on Overleaf, documents that use minted will work ``out of the box". 
+(See \href{https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted}{here} for detailed guides.)
+
+请注意，英文中一对引号需表示为：\verb|``content"|，其呈现的效果是：``content"。
+
+\section{下划线演示}
+
+这是\underline{下划线文字}。
+
+
+\section{文字大小调整演示}
+
+那座山，正当顶上，有{\zihao{1}一块仙石}。其石有{\zihao{3}三}丈{\zihao{6}六}尺{\zihao{-5}五}寸高，有{\zihao{2}二}丈{\zihao{4}四}尺围圆\footnote{三丈六尺五寸高，按周天三百六十五度；二丈四尺围圆，按政历二十四气。}。
+上有九窍八孔，按九宫八卦。四面更无树木遮阴，左右倒有芝兰相衬。
+
+
+% 右对齐，左对齐对应flushleft环境
+\begin{flushright}
+    ——节选自《西游记》第一回
+\end{flushright}
+
+\section{列表演示}
+\subsection{有序列表（enumerate环境）演示}
+
+问：把大象装进冰箱一共需要几步？
+
+答：三步。详细步骤如下，仅供参考：
+\begin{enumerate}
+    \item 把冰箱门打开
+    \item 把大象装进去
+    \item 把冰箱门带上
+\end{enumerate}
+
+更具体的步骤如下，仅仅仅仅供参考：
+\begin{enumerate}
+    \item 把冰箱门打开
+    \item 把大象装进去
+    \begin{enumerate}
+        \item 把大象压缩
+        \item 把大象移动到冰箱门前
+        \item 把大象通过冰箱门放入冰箱中
+    \end{enumerate}
+    \item 把冰箱门带上
+\end{enumerate}
+
+\subsection{无序列表（itemize环境）演示}
+
+\begin{itemize}
+    \item Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. 
+    \item Morbi auctor lorem non justo. Nam lacus libero, pretium at, lobortis vitae, ultricies et, tellus. 
+    \item Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna, vitae ornare odio metus a mi. 
+\end{itemize}
+
+
+\section{\LaTeX{}中的特殊字符}
+
+\# \$ \% \& \{ \} \_ \textbackslash
+
+对应的\LaTeX{}代码如下：
+\begin{minted}
+[
+    frame=lines,
+    framesep=2mm,
+    baselinestretch=1.2,
+    linenos
+]
+{latex}
+\# \$ \% \& \{ \} \_ \textbackslash
+\end{minted}
+
+\end{document}
+
+

@@ -1,0 +1,55 @@
+% Recipe: xelatex -> bibtex -> xelatex*2
+
+\documentclass{article}
+% \usepackage{ctex}   % 思考1：取消此行注释，对比参考文献列表的标题的不同
+
+% 设置文献引用格式（来源：https://github.com/zepinglee/gbt7714-bibtex-style ）
+\usepackage{gbt7714}  
+
+% 顺序引用
+\bibliographystyle{gbt7714-numerical}   % 参考文献样式文件(.bst)
+
+% 作者-出版年引用
+% \bibliographystyle{gbt7714-author-year}   % 参考文献样式文件(.bst)
+
+\usepackage{lipsum}     % 生成随机文字
+
+\usepackage{geometry}   % 设置页边距
+\geometry{a4paper, hmargin=2.54cm, vmargin=3.18cm}
+
+\usepackage{setspace}   % 设置行距
+\onehalfspacing         % 1.5 倍行距
+
+\usepackage[colorlinks, citecolor=blue]{hyperref}   % 引用的参考文献序号为蓝色
+
+\begin{document}
+\section{Introduction}
+
+\lipsum[1]\cite{jack1971,lieberman1989}
+
+\lipsum[3]\cite{sander1969}
+
+\section{Methods}
+
+\lipsum[4]\cite{Powis2024,Sun2023a}
+
+\section{Results and discussions}
+
+\lipsum[1]\citep{Lopez2013, Falgout2002a}
+
+\lipsum[3]\citep{Donko2021}
+
+\section{Conclusions}
+
+\lipsum[4]
+
+% 思考2：在使用作者-出版年引用格式时，对比 \cite 与 \citep 命令的不同
+
+\newpage
+
+
+
+% 列出参考文献
+\bibliography{reference/refs}   % BibTeX 数据库文件(.bib)
+
+\end{document}

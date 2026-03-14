@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage{ctex}
+
+\usepackage{amsmath}    % 数学公式排版
+\usepackage{amssymb}    % 数学符号
+\usepackage{amsthm}     % 定理证明格式
+
+\usepackage{geometry}   % 设置页边距
+\geometry{a4paper, margin=2.54cm}
+
+\usepackage{setspace}   % 设置行距
+\onehalfspacing         % 1.5 倍行距
+
+\usepackage[colorlinks]{hyperref}
+
+
+\begin{document}
+
+\section{带编号的行间公式及其引用示例}
+
+在量子力学中，微观粒子在势场 \(V(\mathbf{r})\) 中的运动可以由方程\eqref{eq:schrodinger-equation}描述：
+\begin{equation}
+    \label{eq:schrodinger-equation}
+    \mathrm{i} \hbar \frac{\partial \Psi}{\partial t} = 
+    - \frac{\hbar^2}{2m} \nabla^2 \Psi + V(\mathbf{r}) \Psi
+\end{equation}
+其中，$m$是粒子质量，$\hbar$是约化普朗克常数，$\Psi=\Psi(\mathbf{r},t)$是粒子的波函数。
+方程\eqref{eq:schrodinger-equation}被称为\textbf{薛定谔方程}。
+
+
+\section{多行公式排版}
+
+\subsection{多行公式用同一编号}
+
+Maxwell电磁方程组如\eqref{eq:maxwell-equations}所示。
+\begin{equation}
+    \label{eq:maxwell-equations}
+    \left\{
+      \begin{aligned}
+        \nabla \cdot \mathbf{D} &= \rho_0 \\
+        \nabla \cdot \mathbf{B} &= 0 \\
+        \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+        \nabla \times \mathbf{H} &= \mathbf{j}_0 + \frac{\partial \mathbf{D}}{\partial t}
+      \end{aligned}
+    \right.
+\end{equation}
+
+
+\subsection{多行公式每行单独编号}
+Maxwell电磁方程组如\eqref{eq:Maxwell-Eqns-1}--\eqref{eq:Maxwell-Eqns-4}所示。
+\begin{align}
+    \label{eq:Maxwell-Eqns-1}
+    \nabla \cdot \mathbf{D} &= \rho_0 \\
+    \label{eq:Maxwell-Eqns-2}
+    \nabla \cdot \mathbf{B} &= 0 \\
+    \label{eq:Maxwell-Eqns-3}
+    \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+    \label{eq:Maxwell-Eqns-4}
+    \nabla \times \mathbf{H} &= \mathbf{j}_0 + \frac{\partial \mathbf{D}}{\partial t}
+\end{align}
+
+我们也可以用 \verb|subequations| 环境使不同方程拥有公共编号和各自的子编号。例如：
+\begin{subequations}
+    \begin{align}
+        \label{eq:Maxwell-Eqns-01}
+        \nabla \cdot \mathbf{D} &= \rho_0 \\
+        \label{eq:Maxwell-Eqns-02}
+        \nabla \cdot \mathbf{B} &= 0 \\
+        \label{eq:Maxwell-Eqns-03}
+        \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+        \label{eq:Maxwell-Eqns-04}
+        \nabla \times \mathbf{H} &= \mathbf{j}_0 + \frac{\partial \mathbf{D}}{\partial t}
+    \end{align}
+\end{subequations}
+
+
+\subsection{分段函数示例}
+
+可使用 \verb|cases| 环境产生分段函数，例如：
+\begin{equation}
+    f(x,y)=
+    \begin{cases}
+    \dfrac{xy}{x^2+y^2}, & x^2+y^2 \neq 0 \\
+    0, & x=y=0
+    \end{cases}
+\end{equation}
+% 思考：将 \dfrac 命令改为 \frac，排版效果会有怎样的不同？
+%       如果放在正文中（行内公式）中，两者有何不同？
+
+
+    
+
+
+\end{document}
